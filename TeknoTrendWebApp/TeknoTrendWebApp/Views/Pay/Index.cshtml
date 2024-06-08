@@ -1,0 +1,77 @@
+﻿@model IEnumerable<TeknoTrendWebApp.Models.ShoppingCart>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+    double total = Model.Sum(x => x.Product.Price * x.Quantity);
+}
+
+<div style="margin-top: 50px;"></div>
+<h2 style="text-align: center;">Ödeme</h2>
+<hr />
+<div style="margin-top: 20px;"></div>
+@using (Html.BeginForm())
+{
+    <div style="display: flex; justify-content: space-between;">
+        <div style="width: 45%;">
+            <div style="border: 1px solid #ccc; border-radius: 5px; padding: 20px; background-color: #f9f9f9;">
+                <div style="margin-bottom: 10px;">
+                    <h3 style="color: #333; text-align: center;">Kart Bilgileri</h3>
+                </div>
+
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <img src="~/Assets/SiteImages/vecteezy_credit-card-clipart-design-illustration_9384393.png" style="max-width: 150px; max-height: 100px;" />
+                </div>
+
+                @if (ViewBag.message != null)
+                {
+                    <div style="margin-bottom: 10px; text-align: center;">
+                        <label style="color:red">@ViewBag.message</label>
+                    </div>
+                }
+
+                <div style="margin-bottom: 10px;">
+                    Kart Üzerindeki İsim
+                    <br />
+                    <input name="name" type="text" class="payinput" style="width: 100%;" />
+                </div>
+
+                <div style="margin-bottom: 10px;">
+                    Kart Numarası
+                    <br />
+                    <input name="cardnumber" type="text" class="payinput" placeholder="---- ---- ---- ----" style="width: 50%;" />
+                </div>
+
+                <div style="margin-bottom: 10px;">
+                    Son Kullanma Ay / Yıl
+                    <br />
+                    <input type="text" name="reqmonth" class="payinput" placeholder="--" style="width: 10%;" /> /
+                    <input type="text" name="reqyear" class="payinput" placeholder="--" style="width: 10%;" />
+                </div>
+
+                <div style="margin-bottom: 10px;">
+                    CVV
+                    <br />
+                    <input type="text" name="cvv" class="payinput" placeholder="---" style="width: 10%;" />
+                </div>
+            </div>
+        </div>
+
+        <div style="width: 45%;">
+            <div style="border: 1px solid #ccc; border-radius: 5px; padding: 20px; background-color: #f9f9f9;">
+                <div style="margin-bottom: 10px;">
+                    <h3 style="color: #333; text-align: center;">Toplam Ödenecek</h3>
+                </div>
+
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <label style="font-size: 15pt;">Toplam = @total ₺</label>
+                </div>
+
+                <div style="text-align: center;">
+                    <input type="submit" class="goToPay" value="Güvenli Ödeme Yap" style="padding: 10px 20px; background-color: #007bff; color: #fff; border: none; border-radius: 3px; cursor: pointer;" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<div style="clear:both"></div>
+<img src="~/Assets/SiteImages/banks.png" width="1400" />

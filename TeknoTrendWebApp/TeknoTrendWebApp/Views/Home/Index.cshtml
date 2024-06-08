@@ -1,0 +1,55 @@
+﻿@model IEnumerable<TeknoTrendWebApp.Models.Product>
+@using TeknoTrendWebApp.Models
+@{
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="campaigns">
+    <img src="~/Assets/SiteImages/camo.png" width="1200" style="box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); margin-right:200px;  " />
+</div>
+
+<div class="product-list">
+    @foreach (Product item in Model)
+    {
+        <div class="product">
+            <a href="@Url.Action("Detail", "Product", new {id= item.ID})" class="product-link">
+                <div class="product-image">
+                    @if (item.ProductImages.Count != 0)
+                    {
+                        int count = item.ProductImages.Count(x => x.isListImage == true);
+                        if (count != 0)
+                        {
+                            <img src="~/Assets/ProductImages/@item.ProductImages.First(x=> x.isListImage == true).ImageUrl" alt="@item.Name" />
+                        }
+                        else
+                        {
+                            <img src="~/Assets/ProductImages/none.png" alt="No Image" />
+                        }
+                    }
+                    else
+                    {
+                        <img src="~/Assets/ProductImages/none.png" alt="No Image" />
+                    }
+                </div>
+            </a>
+            <a href="@Url.Action("Detail", "Product", new {id= item.ID})" class="product-link">
+                <div class="product-info">
+                    <h3 class="product-name">@item.Name</h3>
+                    <div class="product-category">Kategori: @item.category.Name</div>
+                    <h3 class="product-price">@item.Price <small class="price-vat">₺ KDV Dahil</small></h3>
+                </div>
+            </a>
+            <div class="product-cart">
+                @using (Html.BeginForm("AddProduct", "ShoppingCart", FormMethod.Post))
+                {
+                    TempData["Anasayfa"] = true;
+                    <input type="hidden" name="quantity" value="1" />
+                    <input type="hidden" name="id" value="@item.ID" />
+                    <button type="submit" class="add-to-cart-button">Sepete Ekle</button>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+<div style="clear:both"></div>

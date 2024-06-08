@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ab86947007484337a3cb4069f40a3295" Name="Diagram1">
+        <EntityTypeShape EntityType="TeknolojiMarketimDBModel.Alimlar" Width="1.5" PointX="9.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeknolojiMarketimDBModel.Ilceler" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeknolojiMarketimDBModel.Kategoriler" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeknolojiMarketimDBModel.Markalar" Width="1.5" PointX="5.25" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeknolojiMarketimDBModel.SatisDetaylar" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeknolojiMarketimDBModel.Satislar" Width="1.5" PointX="7.5" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeknolojiMarketimDBModel.Sehirler" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeknolojiMarketimDBModel.sysdiagram" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeknolojiMarketimDBModel.TaksitDetaylar" Width="1.5" PointX="9.75" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeknolojiMarketimDBModel.TaksitliSatislar" Width="1.5" PointX="7.5" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeknolojiMarketimDBModel.Tedarikciler" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeknolojiMarketimDBModel.Yoneticiler" Width="1.5" PointX="5.25" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TeknolojiMarketimDBModel.YoneticiYetkiler" Width="1.5" PointX="3" PointY="15.875" IsExpanded="true" />
+        <AssociationConnector Association="TeknolojiMarketimDBModel.FK_Ilceler_Sehirler" ManuallyRouted="false" />
+        <AssociationConnector Association="TeknolojiMarketimDBModel.FK_Tedarikciler_Ilceler" ManuallyRouted="false" />
+        <AssociationConnector Association="TeknolojiMarketimDBModel.FK_SatisDetaylar_Satislar" ManuallyRouted="false" />
+        <AssociationConnector Association="TeknolojiMarketimDBModel.FK_Satislar_Yoneticiler" ManuallyRouted="false" />
+        <AssociationConnector Association="TeknolojiMarketimDBModel.FK_TaksitDetaylar_Satislar" ManuallyRouted="false" />
+        <AssociationConnector Association="TeknolojiMarketimDBModel.FK_Tedarikciler_Sehirler" ManuallyRouted="false" />
+        <AssociationConnector Association="TeknolojiMarketimDBModel.FK_TaksitDetaylar_TaksitliSatis" ManuallyRouted="false" />
+        <AssociationConnector Association="TeknolojiMarketimDBModel.FK_Yoneticiler_YoneticiYetkiler" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TeknolojiMarketimDBModel.Urunler" Width="1.5" PointX="7.5" PointY="6.625" />
+        <AssociationConnector Association="TeknolojiMarketimDBModel.FK_Alimlar_Urunler" />
+        <AssociationConnector Association="TeknolojiMarketimDBModel.FK_Urunler_Kategoriler" />
+        <AssociationConnector Association="TeknolojiMarketimDBModel.FK_Urunler_Markalar" />
+        <AssociationConnector Association="TeknolojiMarketimDBModel.FK_SatisDetaylar_Urunler" />
+        <AssociationConnector Association="TeknolojiMarketimDBModel.FK_Urunler_Tedarikciler" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,21 @@
+﻿@model IEnumerable<TeknoTrendWebApp.Models.Campaigns>
+@using TeknoTrendWebApp.Models;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+@foreach (Campaigns item in Model)
+{
+    <div class="campaign">
+        
+        <a href="@Url.Action("Index", "Home", new { id = item.Category_ID })" class="link">
+            <div class="campaignImage">
+
+                <img src="~/Assets/CampaignImages/@item.ImageUrl"style="padding:25px" width="1000px";/>
+
+            </div>
+        </a>
+    </div>
+}
+

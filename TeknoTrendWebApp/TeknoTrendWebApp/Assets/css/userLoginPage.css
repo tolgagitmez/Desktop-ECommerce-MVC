@@ -1,0 +1,83 @@
+﻿.userpanelcontainer {
+    height: auto;
+    max-width: 420px; /* Ekranın tamamını kaplamasını sağlamak için maksimum genişliği ayarlıyoruz */
+    margin: 25px auto;
+}
+
+.usercontainer {
+    width: 100%;
+    padding: 15px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: -1px 10px 22px -8px rgba(0,0,0,0.75);
+}
+
+.userpanelTitle {
+    text-align: center;
+    border-bottom: 2px solid #4682B4;
+    padding: 20px 0;
+}
+
+.userpanelContent {
+    padding: 20px;
+    margin-bottom:160px;
+}
+
+.userpnl_uyari {
+    background-color: #ff7d7d;
+    text-align: center;
+    color: white;
+    font-size: 12pt;
+    font-weight: 900;
+    border-radius: 7px;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+.userpnl_basari {
+    background-color: forestgreen;
+    text-align: center;
+    color: white;
+    font-size: 12pt;
+    font-weight: 900;
+    border-radius: 7px;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.LoginButton {
+    border: 1px solid teal;
+    border-radius: 5px;
+    padding: 7px 15px;
+    background-color: #4682B4;
+    color: white;
+    font-size: 12pt;
+    cursor: pointer;
+    width: 100%;
+}
+
+.titleitem, .titleitemactive {
+    padding: 10px;
+    text-decoration: none;
+    color: dimgray;
+    font-size: 15pt;
+}
+
+.row {
+    margin-bottom: 10px;
+}
+
+.label, .formLabel {
+    display: block;
+    margin-bottom: 5px;
+    color: dimgray;
+    font-size: 14px;
+    float:left;
+}
+
+.inputbox, .formTextbox {
+    width: calc(100% - 30px); /* Tam genişlik - padding */
+    padding: 10px; /* Text boxların paddingini biraz arttırıyoruz */
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,398 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TeknolojiMarketimDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Alimlar">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Urun_ID" Type="Int32" />
+    <Property Name="Adet" Type="Int32" />
+    <Property Name="AlisFiyat" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Tarih" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Urunler" Relationship="TeknolojiMarketimDBModel.FK_Alimlar_Urunler" FromRole="Alimlar" ToRole="Urunler" />
+  </EntityType>
+  <EntityType Name="Ilceler">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Sehir_ID" Type="Int32" />
+    <Property Name="Isim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Sehirler" Relationship="Self.FK_Ilceler_Sehirler" FromRole="Ilceler" ToRole="Sehirler" />
+    <NavigationProperty Name="Tedarikcilers" Relationship="Self.FK_Tedarikciler_Ilceler" FromRole="Ilceler" ToRole="Tedarikciler" />
+  </EntityType>
+  <EntityType Name="Kategoriler">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Isim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Aciklama" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="Urunlers" Relationship="TeknolojiMarketimDBModel.FK_Urunler_Kategoriler" FromRole="Kategoriler" ToRole="Urunler" />
+  </EntityType>
+  <EntityType Name="Markalar">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Isim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="Urunlers" Relationship="TeknolojiMarketimDBModel.FK_Urunler_Markalar" FromRole="Markalar" ToRole="Urunler" />
+  </EntityType>
+  <EntityType Name="SatisDetaylar">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Satis_ID" Type="Int32" />
+    <Property Name="Urun_ID" Type="Int32" />
+    <Property Name="Adet" Type="Int32" />
+    <Property Name="Fiyat" Type="Decimal" Precision="18" Scale="2" />
+    <NavigationProperty Name="Satislar" Relationship="Self.FK_SatisDetaylar_Satislar" FromRole="SatisDetaylar" ToRole="Satislar" />
+    <NavigationProperty Name="Urunler" Relationship="TeknolojiMarketimDBModel.FK_SatisDetaylar_Urunler" FromRole="SatisDetaylar" ToRole="Urunler" />
+  </EntityType>
+  <EntityType Name="Satislar">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Kasiyer_ID" Type="Int32" />
+    <Property Name="Tarih" Type="DateTime" Precision="3" />
+    <Property Name="FaturaNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="KrediKarti" Type="Boolean" />
+    <NavigationProperty Name="SatisDetaylars" Relationship="Self.FK_SatisDetaylar_Satislar" FromRole="Satislar" ToRole="SatisDetaylar" />
+    <NavigationProperty Name="Yoneticiler" Relationship="Self.FK_Satislar_Yoneticiler" FromRole="Satislar" ToRole="Yoneticiler" />
+    <NavigationProperty Name="TaksitDetaylars" Relationship="Self.FK_TaksitDetaylar_Satislar" FromRole="Satislar" ToRole="TaksitDetaylar" />
+  </EntityType>
+  <EntityType Name="Sehirler">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Isim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Ilcelers" Relationship="Self.FK_Ilceler_Sehirler" FromRole="Sehirler" ToRole="Ilceler" />
+    <NavigationProperty Name="Tedarikcilers" Relationship="Self.FK_Tedarikciler_Sehirler" FromRole="Sehirler" ToRole="Tedarikciler" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TaksitDetaylar">
+    <Key>
+      <PropertyRef Name="TaksitID" />
+    </Key>
+    <Property Name="TaksitID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SatisID" Type="Int32" />
+    <Property Name="SatislarID" Type="Int32" />
+    <Property Name="TaksitTarihi" Type="DateTime" Precision="0" />
+    <Property Name="TaksitMiktari" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OdendiMi" Type="Boolean" />
+    <NavigationProperty Name="Satislar" Relationship="Self.FK_TaksitDetaylar_Satislar" FromRole="TaksitDetaylar" ToRole="Satislar" />
+    <NavigationProperty Name="TaksitliSatislar" Relationship="Self.FK_TaksitDetaylar_TaksitliSatis" FromRole="TaksitDetaylar" ToRole="TaksitliSatislar" />
+  </EntityType>
+  <EntityType Name="TaksitliSatislar">
+    <Key>
+      <PropertyRef Name="SatisID" />
+    </Key>
+    <Property Name="SatisID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ToplamTaksitSayisi" Type="Int32" />
+    <NavigationProperty Name="TaksitDetaylars" Relationship="Self.FK_TaksitDetaylar_TaksitliSatis" FromRole="TaksitliSatislar" ToRole="TaksitDetaylar" />
+  </EntityType>
+  <EntityType Name="Tedarikciler">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirmaIsim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TicariUnvan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Sorumlu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Sehir_ID" Type="Int32" />
+    <Property Name="Ilce_ID" Type="Int32" />
+    <Property Name="Adres" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Telefon" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="MailAdresi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="Ilceler" Relationship="Self.FK_Tedarikciler_Ilceler" FromRole="Tedarikciler" ToRole="Ilceler" />
+    <NavigationProperty Name="Sehirler" Relationship="Self.FK_Tedarikciler_Sehirler" FromRole="Tedarikciler" ToRole="Sehirler" />
+    <NavigationProperty Name="Urunlers" Relationship="TeknolojiMarketimDBModel.FK_Urunler_Tedarikciler" FromRole="Tedarikciler" ToRole="Urunler" />
+  </EntityType>
+  <EntityType Name="Yoneticiler">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Yetki_ID" Type="Int32" />
+    <Property Name="Isim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Soyisim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="KullaniciAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="Satislars" Relationship="Self.FK_Satislar_Yoneticiler" FromRole="Yoneticiler" ToRole="Satislar" />
+    <NavigationProperty Name="YoneticiYetkiler" Relationship="Self.FK_Yoneticiler_YoneticiYetkiler" FromRole="Yoneticiler" ToRole="YoneticiYetkiler" />
+  </EntityType>
+  <EntityType Name="YoneticiYetkiler">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Isim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Yoneticilers" Relationship="Self.FK_Yoneticiler_YoneticiYetkiler" FromRole="YoneticiYetkiler" ToRole="Yoneticiler" />
+  </EntityType>
+  <Association Name="FK_Ilceler_Sehirler">
+    <End Role="Sehirler" Type="Self.Sehirler" Multiplicity="0..1" />
+    <End Role="Ilceler" Type="Self.Ilceler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sehirler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Ilceler">
+        <PropertyRef Name="Sehir_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tedarikciler_Ilceler">
+    <End Role="Ilceler" Type="Self.Ilceler" Multiplicity="0..1" />
+    <End Role="Tedarikciler" Type="Self.Tedarikciler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ilceler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Tedarikciler">
+        <PropertyRef Name="Ilce_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SatisDetaylar_Satislar">
+    <End Role="Satislar" Type="Self.Satislar" Multiplicity="0..1" />
+    <End Role="SatisDetaylar" Type="Self.SatisDetaylar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Satislar">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SatisDetaylar">
+        <PropertyRef Name="Satis_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Satislar_Yoneticiler">
+    <End Role="Yoneticiler" Type="Self.Yoneticiler" Multiplicity="0..1" />
+    <End Role="Satislar" Type="Self.Satislar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Yoneticiler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Satislar">
+        <PropertyRef Name="Kasiyer_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaksitDetaylar_Satislar">
+    <End Role="Satislar" Type="Self.Satislar" Multiplicity="0..1" />
+    <End Role="TaksitDetaylar" Type="Self.TaksitDetaylar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Satislar">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TaksitDetaylar">
+        <PropertyRef Name="SatislarID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tedarikciler_Sehirler">
+    <End Role="Sehirler" Type="Self.Sehirler" Multiplicity="0..1" />
+    <End Role="Tedarikciler" Type="Self.Tedarikciler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sehirler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Tedarikciler">
+        <PropertyRef Name="Sehir_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaksitDetaylar_TaksitliSatis">
+    <End Role="TaksitliSatislar" Type="Self.TaksitliSatislar" Multiplicity="0..1" />
+    <End Role="TaksitDetaylar" Type="Self.TaksitDetaylar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaksitliSatislar">
+        <PropertyRef Name="SatisID" />
+      </Principal>
+      <Dependent Role="TaksitDetaylar">
+        <PropertyRef Name="SatisID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Yoneticiler_YoneticiYetkiler">
+    <End Role="YoneticiYetkiler" Type="Self.YoneticiYetkiler" Multiplicity="0..1" />
+    <End Role="Yoneticiler" Type="Self.Yoneticiler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="YoneticiYetkiler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Yoneticiler">
+        <PropertyRef Name="Yetki_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TeknolojiMarketimDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Alimlars" EntityType="Self.Alimlar" />
+    <EntitySet Name="Ilcelers" EntityType="Self.Ilceler" />
+    <EntitySet Name="Kategorilers" EntityType="Self.Kategoriler" />
+    <EntitySet Name="Markalars" EntityType="Self.Markalar" />
+    <EntitySet Name="SatisDetaylars" EntityType="Self.SatisDetaylar" />
+    <EntitySet Name="Satislars" EntityType="Self.Satislar" />
+    <EntitySet Name="Sehirlers" EntityType="Self.Sehirler" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TaksitDetaylars" EntityType="Self.TaksitDetaylar" />
+    <EntitySet Name="TaksitliSatislars" EntityType="Self.TaksitliSatislar" />
+    <EntitySet Name="Tedarikcilers" EntityType="Self.Tedarikciler" />
+    <EntitySet Name="Yoneticilers" EntityType="Self.Yoneticiler" />
+    <EntitySet Name="YoneticiYetkilers" EntityType="Self.YoneticiYetkiler" />
+    <AssociationSet Name="FK_Ilceler_Sehirler" Association="Self.FK_Ilceler_Sehirler">
+      <End Role="Sehirler" EntitySet="Sehirlers" />
+      <End Role="Ilceler" EntitySet="Ilcelers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tedarikciler_Ilceler" Association="Self.FK_Tedarikciler_Ilceler">
+      <End Role="Ilceler" EntitySet="Ilcelers" />
+      <End Role="Tedarikciler" EntitySet="Tedarikcilers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SatisDetaylar_Satislar" Association="Self.FK_SatisDetaylar_Satislar">
+      <End Role="Satislar" EntitySet="Satislars" />
+      <End Role="SatisDetaylar" EntitySet="SatisDetaylars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Satislar_Yoneticiler" Association="Self.FK_Satislar_Yoneticiler">
+      <End Role="Yoneticiler" EntitySet="Yoneticilers" />
+      <End Role="Satislar" EntitySet="Satislars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaksitDetaylar_Satislar" Association="Self.FK_TaksitDetaylar_Satislar">
+      <End Role="Satislar" EntitySet="Satislars" />
+      <End Role="TaksitDetaylar" EntitySet="TaksitDetaylars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tedarikciler_Sehirler" Association="Self.FK_Tedarikciler_Sehirler">
+      <End Role="Sehirler" EntitySet="Sehirlers" />
+      <End Role="Tedarikciler" EntitySet="Tedarikcilers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaksitDetaylar_TaksitliSatis" Association="Self.FK_TaksitDetaylar_TaksitliSatis">
+      <End Role="TaksitliSatislar" EntitySet="TaksitliSatislars" />
+      <End Role="TaksitDetaylar" EntitySet="TaksitDetaylars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Yoneticiler_YoneticiYetkiler" Association="Self.FK_Yoneticiler_YoneticiYetkiler">
+      <End Role="YoneticiYetkiler" EntitySet="YoneticiYetkilers" />
+      <End Role="Yoneticiler" EntitySet="Yoneticilers" />
+    </AssociationSet>
+    <EntitySet Name="Urunlers" EntityType="TeknolojiMarketimDBModel.Urunler" />
+    <AssociationSet Name="FK_Alimlar_Urunler" Association="TeknolojiMarketimDBModel.FK_Alimlar_Urunler">
+      <End Role="Urunler" EntitySet="Urunlers" />
+      <End Role="Alimlar" EntitySet="Alimlars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Urunler_Kategoriler" Association="TeknolojiMarketimDBModel.FK_Urunler_Kategoriler">
+      <End Role="Kategoriler" EntitySet="Kategorilers" />
+      <End Role="Urunler" EntitySet="Urunlers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Urunler_Markalar" Association="TeknolojiMarketimDBModel.FK_Urunler_Markalar">
+      <End Role="Markalar" EntitySet="Markalars" />
+      <End Role="Urunler" EntitySet="Urunlers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SatisDetaylar_Urunler" Association="TeknolojiMarketimDBModel.FK_SatisDetaylar_Urunler">
+      <End Role="Urunler" EntitySet="Urunlers" />
+      <End Role="SatisDetaylar" EntitySet="SatisDetaylars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Urunler_Tedarikciler" Association="TeknolojiMarketimDBModel.FK_Urunler_Tedarikciler">
+      <End Role="Tedarikciler" EntitySet="Tedarikcilers" />
+      <End Role="Urunler" EntitySet="Urunlers" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Urunler">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Kategori_ID" Type="Int32" />
+    <Property Name="Marka_ID" Type="Int32" />
+    <Property Name="Tedarikci_ID" Type="Int32" />
+    <Property Name="UrunAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BirimFiyat" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="StokMiktari" Type="Int32" />
+    <Property Name="GuvenlikStogu" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="BarkodNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Resim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Alimlars" Relationship="TeknolojiMarketimDBModel.FK_Alimlar_Urunler" FromRole="Urunler" ToRole="Alimlar" />
+    <NavigationProperty Name="Kategoriler" Relationship="TeknolojiMarketimDBModel.FK_Urunler_Kategoriler" FromRole="Urunler" ToRole="Kategoriler" />
+    <NavigationProperty Name="Markalar" Relationship="TeknolojiMarketimDBModel.FK_Urunler_Markalar" FromRole="Urunler" ToRole="Markalar" />
+    <NavigationProperty Name="SatisDetaylars" Relationship="TeknolojiMarketimDBModel.FK_SatisDetaylar_Urunler" FromRole="Urunler" ToRole="SatisDetaylar" />
+    <NavigationProperty Name="Tedarikciler" Relationship="TeknolojiMarketimDBModel.FK_Urunler_Tedarikciler" FromRole="Urunler" ToRole="Tedarikciler" />
+  </EntityType>
+  <Association Name="FK_Alimlar_Urunler">
+    <End Type="TeknolojiMarketimDBModel.Urunler" Role="Urunler" Multiplicity="0..1" />
+    <End Type="TeknolojiMarketimDBModel.Alimlar" Role="Alimlar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urunler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Alimlar">
+        <PropertyRef Name="Urun_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Urunler_Kategoriler">
+    <End Type="TeknolojiMarketimDBModel.Kategoriler" Role="Kategoriler" Multiplicity="0..1" />
+    <End Type="TeknolojiMarketimDBModel.Urunler" Role="Urunler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kategoriler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Urunler">
+        <PropertyRef Name="Kategori_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Urunler_Markalar">
+    <End Type="TeknolojiMarketimDBModel.Markalar" Role="Markalar" Multiplicity="0..1" />
+    <End Type="TeknolojiMarketimDBModel.Urunler" Role="Urunler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Markalar">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Urunler">
+        <PropertyRef Name="Marka_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SatisDetaylar_Urunler">
+    <End Type="TeknolojiMarketimDBModel.Urunler" Role="Urunler" Multiplicity="0..1" />
+    <End Type="TeknolojiMarketimDBModel.SatisDetaylar" Role="SatisDetaylar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urunler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SatisDetaylar">
+        <PropertyRef Name="Urun_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Urunler_Tedarikciler">
+    <End Type="TeknolojiMarketimDBModel.Tedarikciler" Role="Tedarikciler" Multiplicity="0..1" />
+    <End Type="TeknolojiMarketimDBModel.Urunler" Role="Urunler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tedarikciler">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Urunler">
+        <PropertyRef Name="Tedarikci_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

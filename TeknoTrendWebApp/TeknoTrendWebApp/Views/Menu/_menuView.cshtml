@@ -1,0 +1,9 @@
+﻿@model IEnumerable<TeknoTrendWebApp.Models.Category>
+@using TeknoTrendWebApp.Models
+
+@foreach (Category item in Model)
+{
+    <a style="float:left;" href="@Url.Action("Index","Home", new {id = item.ID})">@item.Name</a>
+}
+
+<a style="float:left"; href="@Url.Action("Index","Campaign")">Kampanyalar</a>   

@@ -1,0 +1,45 @@
+﻿@model TeknoTrendWebApp.Areas.AdminPanel.ConfirmXmlViewModel
+@{
+    ViewBag.Title = "XML Önizleme";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_LayoutPage1.cshtml";
+}
+
+
+
+
+<h2>XML Önizleme</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Kategori ID</th>
+            <th>Marka ID</th>
+            <th>Ürün Adı</th>
+            <th>Birim Fiyat</th>
+            <th>Stok Miktarı</th>
+            <th>Resim</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model.Products)
+        {
+            <tr>
+                <td>@product.ID</td>
+                <td>@product.Category_ID</td>
+                <td>@product.Brand_ID</td>
+                <td>@product.Name</td>
+                <td>@product.Price</td>
+                <td>@product.Stock</td>
+                <td>
+                    <img src="@Url.Content("~/Assets/ProductImages/" + @Model.ProductImages.FirstOrDefault(pi => pi.Product_ID == product.ID)?.ImageUrl)" alt="Product Image" style="max-width: 100px; max-height: 100px;"/>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@using (Html.BeginForm("ImportProducts", "Xml", FormMethod.Post))
+{
+    <button type="submit">Onayla ve Kaydet</button>
+}

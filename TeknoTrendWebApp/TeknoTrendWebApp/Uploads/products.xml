@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfUrunler xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Urunler>
+    <ID>1021</ID>
+    <Kategori_ID>1</Kategori_ID>
+    <Marka_ID>9</Marka_ID>
+    <Tedarikci_ID>1</Tedarikci_ID>
+    <UrunAdi>TCL One Touch 4022S Tuşlu Telefon Gri</UrunAdi>
+    <BirimFiyat>1999.00</BirimFiyat>
+    <StokMiktari>100</StokMiktari>
+    <GuvenlikStogu xsi:nil="true" />
+    <IsActive xsi:nil="true" />
+    <IsDeleted xsi:nil="true" />
+    <BarkodNo>1232970</BarkodNo>
+    <Resim>ff9ae1e4-b2a4-4164-83c4-e11d9edd7491.jpg</Resim>
+  </Urunler>
+</ArrayOfUrunler>

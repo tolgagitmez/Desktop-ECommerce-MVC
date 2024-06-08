@@ -1,0 +1,56 @@
+﻿@model TeknoTrendWebApp.Models.Campaigns
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="box">
+    <div class="title">
+        <h3>Kampanyalar <small style="font-weight:100"> Kampanya Ekle</small></h3>
+    </div>
+    <div class="content">
+        @using (Html.BeginForm("Create", "Campaign", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            if (ViewBag.hata != null)
+            {
+                <div class="pnl_uyari">
+                    @ViewBag.hata
+                </div>
+            }
+            if (ViewBag.basarili != null)
+            {
+                <div class="pnl_basarili">
+                    @ViewBag.basarili
+                </div>
+            }
+            <div class="row">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "formLabel" })
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "formTextbox" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "formValidationText" })
+            </div>
+            <div class="row">
+                @Html.LabelFor(model => model.Category_ID, htmlAttributes: new { @class = "formLabel" })
+                @Html.DropDownList("Category_ID", null, htmlAttributes: new { @class = "formTextbox" })
+            </div>
+
+            <div class="row">
+                @Html.LabelFor(model => model.Brand_ID, htmlAttributes: new { @class = "formLabel" })
+                @Html.DropDownList("Brand_ID", null, htmlAttributes: new { @class = "formTextbox" })
+            </div>
+            <div class="row">
+                @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "formLabel" })
+                @Html.EditorFor(model => model.IsActive, new { htmlAttributes = new { @class = "formCheckBox" } }) Aktif Kategori<small>(Eğer Seçilirse kategori yayınlanır)</small>
+                @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "formValidationText" })
+            </div>
+            <div class="row">
+                <label class="formLabel">Resim Seçiniz</label>
+                <input type="file" name="Image" class="formTextbox" />
+            </div>
+            <div class="row">
+                <button type="submit" class="submitButton">Kampanya Ekle</button><a href="@Url.Action("Index","Campaign")" class="backButton">Kampanya listesine dön</a>
+            </div>
+        }
+    </div>
+</div>
+
+

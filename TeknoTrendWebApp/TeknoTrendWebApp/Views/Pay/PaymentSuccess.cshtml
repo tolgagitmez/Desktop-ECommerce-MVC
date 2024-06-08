@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "PaymentSuccess";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div style="text-align: center; margin: 0 auto;">
+    <h2 style="color: #4CAF50;">Ödeme Başarılı</h2>
+
+    <div style="background-color: #dff0d8; border-color: #d6e9c6; color: #3c763d; padding: 15px; margin-bottom: 20px; border: 1px solid transparent; border-radius: 4px; display: inline-block;">
+        <strong>Başarılı!</strong> Siparişiniz başarıyla oluşturuldu.
+    </div>
+
+    <p style="font-size: 16px; color: #555;">Alışverişiniz için teşekkür ederiz. Siparişiniz başarıyla oluşturuldu.</p>
+
+    @if (ViewBag.OrderNumber != null)
+    {
+        <p style="font-size: 14px; color: #333;"><strong>Sipariş Numarası:</strong> @ViewBag.OrderNumber</p>
+    }
+
+    @if (ViewBag.OrderDate != null)
+    {
+        <p style="font-size: 14px; color: #333;"><strong>Sipariş Tarihi:</strong> @ViewBag.OrderDate</p>
+    }
+
+    <a href="@Url.Action("Index", "Home")" style="display: inline-block; padding: 10px 20px; font-size: 14px; font-weight: bold; color: #fff; background-color: #007bff; border-color: #007bff; text-align: center; text-decoration: none; white-space: nowrap; border-radius: 4px;">Alışverişe Devam Et!</a>
+</div>

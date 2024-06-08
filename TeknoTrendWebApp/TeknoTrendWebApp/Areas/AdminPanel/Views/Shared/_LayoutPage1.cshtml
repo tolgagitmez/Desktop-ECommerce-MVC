@@ -1,0 +1,64 @@
+﻿@using TeknoTrendWebApp.Models
+@{
+    Manager m = null;
+    if (Session["manager"] != null)
+    {
+        m = Session["manager"] as Manager;
+    }
+    else
+    {
+        Response.Redirect("~/AdminPanel/Login/Index");
+    }
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Areas/AdminPanel/Assets/css/mainStyle.css" rel="stylesheet" />
+    <link href="~/Areas/AdminPanel/Assets/css/formControls.css" rel="stylesheet" />
+    <link href="~/Areas/AdminPanel/Assets/plugins/fontawesome-6.5.1/css/all.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="navBar">
+        <div class="container">
+            <div class="brand">
+                <h3>TeknoTrend Admin Panel</h3>
+            </div>
+            <div class="userPanel">
+                <a href="#">@m.NickName (@m.ManagerType.Name)</a>
+                <a href="@Url.Action("LogOut","Login")">Çıkış Yap</a>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+    </div>
+    <div class="subNavBarBase">
+        <div class="container">
+            <div class="subNavBar">
+                <ul class="menu">
+                    <a href="@Url.Action("Index","Home")">
+                    <li>Anasayfa</li></a>
+                    <a href="@Url.Action("Index","Category")">
+                    <li>Kategori İşlemleri</li></a>
+                    <a href="@Url.Action("Index","Product")">
+                    <li>Ürün İşlemleri</li></a>
+                    <a href="@Url.Action("Index","Brand")">
+                    <li>Marka İşlemleri</li></a>
+                    <a href="@Url.Action("Index","Campaign")">
+                    <li>Kampanya İşlemleri</li></a>
+                    <a href="@Url.Action("PreviewXml","Xml")">
+                    <li>Veri İşlemleri</li></a>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+
+        <div class="contentContainer">
+            @RenderBody()
+
+        </div>
+    </div>
+</body>
+</html>

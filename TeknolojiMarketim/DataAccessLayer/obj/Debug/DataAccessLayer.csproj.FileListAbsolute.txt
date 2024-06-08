@@ -1,0 +1,6 @@
+C:\Users\teteg\source\repos\TeknolojiMarketim\DataAccessLayer\bin\Debug\DataAccessLayer.dll
+C:\Users\teteg\source\repos\TeknolojiMarketim\DataAccessLayer\bin\Debug\DataAccessLayer.pdb
+C:\Users\teteg\source\repos\TeknolojiMarketim\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.AssemblyReference.cache
+C:\Users\teteg\source\repos\TeknolojiMarketim\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Users\teteg\source\repos\TeknolojiMarketim\DataAccessLayer\obj\Debug\DataAccessLayer.dll
+C:\Users\teteg\source\repos\TeknolojiMarketim\DataAccessLayer\obj\Debug\DataAccessLayer.pdb

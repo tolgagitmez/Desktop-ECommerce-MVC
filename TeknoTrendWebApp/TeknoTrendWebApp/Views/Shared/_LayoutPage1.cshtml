@@ -1,0 +1,95 @@
+﻿@using TeknoTrendWebApp.Models
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Tekno Trend - @ViewBag.Title * Geleceğin İzinde, Teknolojinin Trendleri *</title>
+    <link href="~/Assets/css/MainStyle.css" rel="stylesheet" />
+    <link href="~/Assets/css/userLoginPage.css" rel="stylesheet" />
+    <link href="~/Assets/plugins/fontawesome-6.5.1/css/all.min.css" rel="stylesheet" />
+    @RenderSection("styles", false)
+</head>
+<body>
+    <div class="topnavbar" style="position:relative">
+        <div class="container">
+            <a href="~/Home/Index" class="brand" style="display: inline-block; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                <img src="~/Assets/Brand/Screenshot 2024-03-29 232858.png" style="width:180px; height:80px;" />
+            </a>
+            <small class="motto">Geleceğin İzinde, Teknolojinin Trendleri</small>
+            @using (Html.BeginForm("Search", "Home", FormMethod.Post))
+            {
+                <div class="search-container">
+                    <input type="text" placeholder="Lütfen ürün giriniz.." class="search-box" id="searchBox" name="str">
+                    <button type="submit" class="fa-solid fa-magnifying-glass search-button"></button>
+                </div>
+
+            }
+
+            @if (Session["user"] == null)
+            {
+
+
+                <div  class="userandcart">
+
+                    <input type="checkbox" class="checkbox-style" id="userpanel-toggle">
+                    <label style="text-decoration: none; color: #2B65D9; padding: 7px; border: 1px solid #5CC8F2; border-radius: 5px; margin: 0px 5px;" for="userpanel-toggle" class="fa fa-user"></label>
+
+                    <div style="" class="userpanel-content">
+                        <a style="text-align:center;" href="@Url.Action("Register","User")"><i class="fa fa-user-plus"></i> Üye Ol</a>
+                        <a style="text-align:center;" href="@Url.Action("Login","User")"><i class="fa fa-user"></i> Giriş Yap</a>
+                    </div>
+
+                    <a style="position:absolute; top:26px;" href="@Url.Action("Index","ShoppingCart")"><i class="fa fa-shopping-cart"></i> Sepet (0)</a>
+                </div>
+            }
+            else
+            {
+                User u = Session["user"] as User;
+                TeknoTrendDBModel db = new TeknoTrendDBModel();
+                int count = db.ShoppingCarts.Count(x => x.User_ID == u.ID);
+
+                <div class="userandcart" style="padding-top:31px">
+                    <a href="@Url.Action("Index","ShoppingCart")"><i class="fa fa-shopping-cart"></i> Sepet (@count)</a>
+                    <a href="@Url.Action("Index","Profile")">@u.Name @u.Surname</a>
+                    <a href="@Url.Action("LogOut","User")"> Çıkış</a>
+                </div>
+            }
+            <div style="clear:both"></div>
+        </div>
+    </div>
+    <div class="navbar">
+        <div class="container">
+            @Html.Action("_menuView", "Menu")
+        </div>
+    </div>
+    <div class="render-container">
+        <div class="container">
+            @RenderBody()
+        </div>
+    </div>
+    <hr />
+
+    <div class="features">
+        <img src="~/Assets/SiteImages/faaşn.png" style="padding-left:25px;" />
+    </div>
+    <div class="features">
+        <img src="~/Assets/SiteImages/sdasdsadsadsad.png" style="padding-left:250px;" />
+    </div>
+    <hr />
+    <div class="footer">
+        <div style="font-size:larger">Tekno Trend</div>
+        <p>
+
+
+            Teknoloji dünyasının en güncel ürünlerini, en uygun fiyatlarla ve üstün hizmet kalitesiyle sizlere sunan lider e-ticaret platformu. Akıllı telefonlar, dizüstü bilgisayarlar, tabletler, oyun konsolları, akıllı saatler ve daha pek çok teknolojik ürünü tek bir çatı altında topluyoruz.
+
+            Geniş ürün yelpazemiz sayesinde, en son teknolojiye sahip cihazları keşfedebilir ve ihtiyaçlarınıza en uygun olanı kolayca bulabilirsiniz. Sadece satışta değil, satış sonrasında da yanınızdayız. Hızlı ve güvenli teslimat seçeneklerimiz, kullanıcı dostu iade politikamız ve 7/24 müşteri destek hizmetimizle alışveriş deneyiminizi mükemmelleştiriyoruz.
+
+            Tekno Trend, teknolojiyi hayatınızın her alanında daha erişilebilir ve keyifli hale getirmek için çalışıyor. Kampanyalarımızı ve özel indirimlerimizi kaçırmamak için bizi takip edin ve en yeni teknoloji ürünlerine ilk siz sahip olun. Teknolojinin en yeni trendlerini keşfetmek ve alışverişin keyfini çıkarmak için doğru adres: Tekno Trend!
+        </p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+﻿@model TeknoTrendWebApp.Models.Product
+@using TeknoTrendWebApp.Models
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+<div style="margin-top: 50px;"></div>
+<div class="product-detail-container">
+    <div class="product-images">
+        <img id="mainImage" src="~/Assets/ProductImages/@ViewBag.CoverImage" class="main-image" alt="Product Image" />
+        <div class="thumbnail-list">
+            @foreach (ProductImage item in ViewBag.Images)
+            {
+                <img src="~/Assets/ProductImages/@item.ImageUrl" class="thumbnail" alt="Thumbnail" id="thumbnail-@item.ImageUrl" />
+            }
+        </div>
+    </div>
+    <div class="product-info">
+        <p>Ürün Kodu: @Model.ID</p>
+        <p>Marka: <a href="@Url.Action("ProductWBrand","Products", new {id= Model.Brand_ID})">@Model.Brand.Name</a></p>
+        <h2 class="product-name">@Model.Name</h2>
+        <div class="actions">
+            <a href="#" class="fav-button"><i class="fa-regular fa-heart"></i> Favorilere ekle</a>
+            <a href="#" class="collection-button"><i class="fa fa-list"></i> Koleksiyona Ekle</a>
+        </div>
+        <div class="product-price">
+            <p>@Model.Price₺</p>
+        </div>
+        <div class="add-to-cart">
+            @using (Html.BeginForm("AddProduct", "ShoppingCart", FormMethod.Post))
+            {
+                <input type="number" class="quantity" name="quantity" value="1" min="1" />
+                <input name="id" type="hidden" value="@Model.ID" />
+                <button type="submit" class="add-to-cart-button">Sepete Ekle</button>
+            }
+        </div>
+        <div class="product-description">
+            <h3>Ürün Özellikleri</h3>
+            <p>@Model.Description</p>
+        </div>
+
+    </div>
+</div>
+
+
+<div style="clear:both"></div>
+
+<div style="margin-top: 100px;"></div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const mainImage = document.getElementById('mainImage');
+        const thumbnails = document.querySelectorAll('.thumbnail');
+
+        thumbnails.forEach(thumbnail => {
+            thumbnail.addEventListener('click', function () {
+                mainImage.src = thumbnail.src;
+            });
+        });
+    });
+</script>
