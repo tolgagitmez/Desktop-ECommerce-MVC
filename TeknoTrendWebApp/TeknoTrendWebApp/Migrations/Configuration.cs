@@ -31,11 +31,6 @@
 
             #endregion
 
-            #region Users
-
-            context.Users.AddOrUpdate(x => x.ID, new User() { ID = 1, Name = "Alp", Surname = "Sarıkışla", Email = "alpsarikisla@hotmail.com", Password = "1234", PhoneNumber = "5302050200", CreationDate = Convert.ToDateTime("2024.01.01") });
-
-            #endregion
         }
     }
 }
