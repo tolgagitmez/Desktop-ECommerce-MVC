@@ -4,45 +4,56 @@
 
 .formLabel {
     display: block;
-    color: #808080;
+    color: #2c3e50;
     margin-bottom: 7px;
+    font-weight: bold;
 }
 
 .formTextbox {
-    padding: 7px;
+    padding: 10px;
     width: 100%;
     box-sizing: border-box;
     border-radius: 5px;
-    border: 1px solid silver;
+    border: 1px solid #bdc3c7;
+    font-size: 14px;
+    color: #2c3e50;
 }
 
     .formTextbox:focus {
-        outline: 1px solid teal;
+        outline: none;
+        border-color: #3498db;
+        box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
     }
 
 .formValidationText {
     color: red;
+    font-size: 12px;
 }
 
 .submitButton {
-    border: 1px solid teal;
+    border: none;
     border-radius: 5px;
-    padding: 10px 0;
+    padding: 15px 0;
     width: 100%;
-    background-color: teal;
+    background-color: #3498db;
     color: white;
-    font-weight: 900;
-    font-size: 14pt;
+    font-weight: bold;
+    font-size: 16px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
     .submitButton:hover {
-        background-color: #03a9a9;
+        background-color: #2980b9;
     }
 
 .chekLabel {
-    color: #808080;
+    color: #2c3e50;
+    font-weight: normal;
+    display: flex;
+    align-items: center;
 }
 
 .formCheckBox {
+    margin-right: 10px;
 }

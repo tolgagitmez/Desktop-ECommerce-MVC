@@ -35,7 +35,7 @@
                 </div>
                 <div class="row">
                     @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "formLabel" })
-                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "formTextbox", @placeholder = "şifreniz", @value = "1234" } })
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "formTextbox", @placeholder = "şifreniz" } })
                     @Html.ValidationMessageFor(model => model.Password, "", new { @class = "formValidationText" })
                 </div>
                 <div class="row">
@@ -47,7 +47,6 @@
                 </div>
             }
         </div>
-
     </div>
 </body>
 </html>
